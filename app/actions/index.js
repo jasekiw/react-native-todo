@@ -23,3 +23,8 @@ export const updateDimensions = () => ({
   type: 'UPDATE_DIMENSIONS',
   dims: Dimensions.get("window")
 });
+
+export const submitNewTodo = (newTodo) => function(dispatch) {
+  dispatch(addTodo(newTodo));
+  dispatch(clearNewTodoText());
+};

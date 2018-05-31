@@ -1,6 +1,6 @@
 import React from "react";
 import {Button, Text, TextInput, View, StyleSheet} from "react-native";
-import {addTodo, clearNewTodoText, setNewTodoText} from "../../actions";
+import {addTodo, clearNewTodoText, setNewTodoText, submitNewTodo} from "../../actions";
 
 export default class AddTodoScreen extends React.Component {
 
@@ -25,8 +25,7 @@ export default class AddTodoScreen extends React.Component {
 
   submitTodo() {
     const { navigation, newTodo, dispatch } = this.props;
-    dispatch(addTodo(newTodo));
-    dispatch(clearNewTodoText());
+    dispatch(submitNewTodo(newTodo));
     navigation.pop();
   }
 }

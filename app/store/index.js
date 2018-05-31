@@ -1,13 +1,15 @@
 import rootReducer from '../reducers';
-import {createStore} from "redux";
+import {applyMiddleware, createStore} from "redux";
 import {updateDimensions} from "../actions";
 import {Dimensions} from "react-native";
+import thunk from "redux-thunk";
 
 
 export default function configureStore(initialState) {
   const store = createStore(
     rootReducer,
-    initialState
+    initialState,
+    applyMiddleware(thunk)
   );
 
   if (module.hot) {
