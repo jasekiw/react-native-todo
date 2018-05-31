@@ -3,21 +3,17 @@ import React from "react";
 import {StyleSheet, Text, TouchableHighlight, View} from "react-native";
 import PropTypes from 'prop-types';
 
-export default class Todo extends React.Component {
-
-  render() {
+export default function Todo(props) {
+    const {toggleTodo, index, todo} = props;
     return (
-      <TouchableHighlight style={styles.todo} underlayColor={shadeColor} onPress={this.onShow}>
-          <Text>{this.props.todo.text}</Text>
+      <TouchableHighlight style={styles.todo} underlayColor={shadeColor} onPress={() => toggleTodo(index)}>
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>{todo.text}</Text>
+          <Text style={styles.checkText}> {todo.completed ? '✔': ''}</Text>
+        </View>
       </TouchableHighlight>
     )
-  }
-  onShow() {
-    console.log("shown");
-  }
 }
-
-
 
 const styles = StyleSheet.create({
   todo: {
@@ -29,7 +25,21 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     marginTop: 5,
     marginBottom: 5,
-    padding: 3
+    padding: 3,
+    paddingVertical: 8
+  },
+  text: {
+    flexGrow: 1,
+    textAlign: 'center',
+    marginLeft: 30
+  },
+  checkText: {
+    width: 30
+  },
+  textContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
   }
 });
 const shadeColor = '#c0c0c0';
@@ -37,3 +47,4 @@ const shadeColor = '#c0c0c0';
 Todo.propTypes = {
   todo: PropTypes.object
 };
+
